@@ -55,8 +55,6 @@ Location.prototype.get = function(component, short){
 				return this.get('number') ? this.get('number') + ' ' + this.get('street') : this.get('street');
 			case 'coords':
 				return this._coords();
-			case 'radius':
-				return ('radius' in this.data) ? this.data.radius : 10;
 			case 'name':
 				return this.data.name;
 			case 'phone':
