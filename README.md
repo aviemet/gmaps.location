@@ -4,10 +4,10 @@ A convenience wrapper for a Google maps location response with helper methods
 # Usage
 An example using with Google places autocomplete
 
-...
+```
 var input = new Google.maps.places.Autocomplete(document.getElementById('google-location-search');
 var thatPlace = new Location(input.getPlace());
-...
+```
 
 Now you can use the get method on the Location object to retrieve the information
 
