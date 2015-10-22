@@ -73,7 +73,7 @@ Location.prototype.get = function(component, short){
 				// each component type
 				for(var type in this.data.address_components[comp]['types']){
 					if(this._types[component] == this.data.address_components[comp]['types'][type]){
-						return _.isEmpty(short) ? this.data.address_components[comp].long_name : this.data.address_components[comp].short_name;
+						return short !== true ? this.data.address_components[comp].long_name : this.data.address_components[comp].short_name;
 					}
 				}
 			}
