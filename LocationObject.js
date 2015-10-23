@@ -5,35 +5,35 @@
  * retrieving info in english
  * retrieving coords as simple array
  **/
-function Location(location){
-	if (!(this instanceof Location)) {
-		throw new TypeError("Location constructor cannot be called as a function.");
+var GmapsLocation = function(location){
+	if (!(this instanceof GmapsLocation)) {
+		throw new TypeError("GmapsLocation constructor cannot be called as a function.");
 	}
 	this.setLocation(location);
 }
 
 // Verifies that the data passed is in fact a google locaton object
-Location.isGoogleObject = function(location){
+GmapsLocation.isGoogleObject = function(location){
 	return ((typeof location == "object") && ("address_components" in location) && ("formatted_address" in location) && ("geometry" in location) && ("location" in location.geometry));
 };
 
 // Only setter function. If data is set, it must be valid
-Location.prototype.setLocation = function(location){
-	if(Location.isGoogleObject(location)){
+GmapsLocation.prototype.setLocation = function(location){
+	if(GmapsLocation.isGoogleObject(location)){
 		this.data = location;
 		return true;
 	}
 	return false;
 };
 
-Location.prototype.isset = function(){
+GmapsLocation.prototype.isset = function(){
 	return (this.data !== null);
 };
 
 /**
  * Custom responses for the get method
  */
-Location.prototype._types = {
+GmapsLocation.prototype._types = {
 	'number': 'street_number',
 	'street': 'route',
 	'city': 'locality',
@@ -43,7 +43,7 @@ Location.prototype._types = {
 	'zip': 'postal_code'
 };
 
-Location.prototype.get = function(component, short){
+GmapsLocation.prototype.get = function(component, short){
 	if(this.data !== null){
 		// Filter address and location data
 		switch(component){
@@ -82,7 +82,7 @@ Location.prototype.get = function(component, short){
 	return false;
 };
 
-Location.prototype._coords = function(){
+GmapsLocation.prototype._coords = function(){
 	var keys = Object.keys(this.data.geometry.location);
 	return {'lat': this.data.geometry.location[keys[0]], 'lng': this.data.geometry.location[keys[1]] };
 };
