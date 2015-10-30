@@ -40,7 +40,7 @@ GmapsLocation.prototype._types = {
 	'county': 'administrative_area_level_2',
 	'state': 'administrative_area_level_1',
 	'country': 'country',
-	'zip': 'postal_code'
+	'postal': 'postal_code'
 };
 
 GmapsLocation.prototype.get = function(component, short){
