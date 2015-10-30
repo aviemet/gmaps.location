@@ -49,6 +49,8 @@ GmapsLocation.prototype.get = function(component, short){
 		switch(component){
 			case 'location':
 				return this.data;
+			case 'id':
+				return this.data.place_id;
 			case 'address':
 				return this.data.formatted_address;
 			case 'street_address':
