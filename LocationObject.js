@@ -71,8 +71,15 @@ GmapsLocation.prototype.get = function(component, short){
 			case 'icon':
 				return this.data.icon;
 			case 'photos':
-				// Returns the array of photos - .getUrl() .count
 				return this.data.photos;
+			case 'reviews':
+				return this.data.reviews;
+			case 'hours':
+				return this.data.opening_hours;
+			case 'rating':
+				return this.data.rating;
+			case 'types':
+				return this.data.types;
 			default:
 			// each address component
 			for(var comp in this.data.address_components){
