@@ -19,6 +19,7 @@ GmapsLocation.isGoogleObject = function(location){
 
 // Only setter function. If data is set, it must be valid
 GmapsLocation.prototype.setLocation = function(location){
+	if(location.result){ location = location.result; }
 	if(GmapsLocation.isGoogleObject(location)){
 		this.data = location;
 		return true;
@@ -69,12 +70,15 @@ GmapsLocation.prototype.get = function(component, short){
 				return this.data.url;
 			case 'icon':
 				return this.data.icon;
+			case 'photos':
+				// Returns the array of photos - .getUrl() .count
+				return this.data.photos;
 			default:
 			// each address component
 			for(var comp in this.data.address_components){
 				// each component type
-				for(var type in this.data.address_components[comp]['types']){
-					if(this._types[component] == this.data.address_components[comp]['types'][type]){
+				for(var type in this.data.address_components[comp].types){
+					if(this._types[component] == this.data.address_components[comp].types[type]){
 						return short !== true ? this.data.address_components[comp].long_name : this.data.address_components[comp].short_name;
 					}
 				}
@@ -86,5 +90,5 @@ GmapsLocation.prototype.get = function(component, short){
 
 GmapsLocation.prototype._coords = function(){
 	var keys = Object.keys(this.data.geometry.location);
-	return {'lat': this.data.geometry.location[keys[0]], 'lng': this.data.geometry.location[keys[1]] };
+	return {'lat': this.data.geometry.location[keys[0]](), 'lng': this.data.geometry.location[keys[1]]() };
 };
